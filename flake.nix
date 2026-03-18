@@ -37,8 +37,12 @@
               chmod +x $out/bin/mole
               cp -r $src/lib/* $out/lib/
               sed -i "s|SCRIPT_DIR=.*|SCRIPT_DIR=\"$out\"|" $out/bin/mole
-              ln -s $out/bin/analyze $out/lib/analyze
-              ln -s $out/bin/status $out/lib/status
+              ln -s $out/bin/analyze $out/lib/analyze.sh
+              ln -s $out/bin/status $out/lib/status.sh
+
+              ln -s $out/bin/analyze $out/lib/analyze.sh
+              ln -s $out/bin/status $out/lib/status.sh
+
             '';
 
             meta = with nixpkgs.lib; {
