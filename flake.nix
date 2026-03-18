@@ -33,16 +33,22 @@
 
             postInstall = ''
               mkdir -p $out/bin $out/lib
+              
+              # 1. Copy main script and libraries
               cp $src/mole $out/bin/mole
               chmod +x $out/bin/mole
               cp -r $src/lib/* $out/lib/
+
+              # 2. Patch the script path
               sed -i "s|SCRIPT_DIR=.*|SCRIPT_DIR=\"$out\"|" $out/bin/mole
-              ln -s $out/bin/analyze $out/lib/analyze.sh
-              ln -s $out/bin/status $out/lib/status.sh
-
-              ln -s $out/bin/analyze $out/lib/analyze.sh
-              ln -s $out/bin/status $out/lib/status.sh
-
+              
+              # 3. FORCE symlinks to replace existing script files
+              # Use -sf to overwrite any existing analyze.sh/status.sh
+              ln -sf $out/bin/analyze $out/bin/analyze.sh
+              ln -sf $out/bin/status $out/bin/status.sh
+              
+              ln -sf $out/bin/analyze $out/lib/analyze.sh
+              ln -sf $out/bin/status $out/lib/status.sh        
             '';
 
             meta = with nixpkgs.lib; {
