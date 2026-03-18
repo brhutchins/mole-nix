@@ -11,12 +11,12 @@
     {
       packages = forAllSystems (system:
 
-        apps = forAllSystems (system: {
-          default = {
-              type = "app";
-              progarm = "${self.packages.${system}.default}/bin/mole";
-            };
-        }); 
+      apps = forAllSystems (system: {
+        default = {
+          type = "app";
+          program = "${self.packages.${system}.default}/bin/mole";
+        };
+      });
 
         let
           pkgs = import nixpkgs { inherit system; };
