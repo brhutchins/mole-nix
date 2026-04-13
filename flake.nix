@@ -21,13 +21,13 @@
             src = pkgs.fetchFromGitHub {
               owner = "tw93";
               repo = "Mole";
-              rev = "main";
-              hash = "sha256-r7v/3BB4f+BH+1wwF2GPYiVKHKmIGFWP6JJB0n4ROV4=";
+              rev = "bcccefd525b4b9286b346ef6bdadb4a4f7c16ac0";
+              hash = "sha256-C+mw9mV9vaa+7Dr+ujJtEBUEn/vNcxr6KbsQ+xcSlOI=";
             };
 
             proxyVendor = true;
+            vendorHash = "sha256-8+1FDxumlBFzBz/b1KVbotQq+twm/MRlJSJ9AZCgASE=";
             deleteVendor = true;
-            vendorHash = "sha256-8jpELwcEVdo2gV9KbJz5KttluSRN+hYQeo+ZZ4gFkTk=";
 
             subPackages = [ "cmd/analyze" "cmd/status" ]; 
 
