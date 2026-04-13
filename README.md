@@ -18,7 +18,7 @@ This flake packages the hybrid Bash/Go architecture of Mole, ensuring all depend
 You can run the Mole TUI immediately without adding it to your system configuration:
 
 ```bash
-nix run github:mikewebbtech/mole-nix --refresh --no-write-lock-file -- --help
+nix run github:mikewebbtech/mole-nix -- --help
 ```
 Note: Use sudo if you plan to run system-level optimizations or TouchID configurations.
 
@@ -45,11 +45,6 @@ outputs = { self, nixpkgs, mole-nix, ... }: {
         environment.systemPackages = [
           mole-nix.packages.\${system}.default
         ];
-        
-        # Recommended: Add an alias for the 'mo' command
-        environment.shellAliases = {
-          mo = "sudo mole";
-        };
       }
     ];
   };
@@ -63,9 +58,8 @@ darwin-rebuild switch --flake .
 ### 🏗️ Technical Details
 Mole is a unique "hybrid" application. This flake handles the following complexities:
 * Go Vendoring: Uses proxyVendor = true to handle out-of-sync upstream dependencies.
-* Naming Conventions: Creates forced symbolic links (e.g., analyze.sh -> analyze) so the main Bash wrapper can find the compiled Go binaries.
 * Environment Isolation: Patches the SCRIPT_DIR variable within the mole script to point to the specific $out path in the Nix store.
 
 ## 🤝 Credits
 Original Tool: tw93/Mole (give this project some stars. It is awesome 🤩)
-Packaging: mikewebbtech (This is my first package flack, feedback welcome)
+Packaging: mikewebbtech (This is my first package flake, feedback welcome)
