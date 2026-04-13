@@ -35,12 +35,11 @@
               mkdir -p $out/bin $out/lib
               
               # 1. Copy main script and libraries
-              cp $src/mole $out/bin/mole
-              chmod +x $out/bin/mole
+              cp $src/mole $out/bin/mo
+              chmod +x $out/bin/mo
               cp -r $src/lib/* $out/lib/
 
               # 2. Patch the script path
-              sed -i "s|SCRIPT_DIR=.*|SCRIPT_DIR=\"$out\"|" $out/bin/mole
               
               # 3. FORCE symlinks to replace existing script files
               # Use -sf to overwrite any existing analyze.sh/status.sh
@@ -49,6 +48,7 @@
               
               ln -sf $out/bin/analyze $out/lib/analyze.sh
               ln -sf $out/bin/status $out/lib/status.sh        
+              sed -i "s|SCRIPT_DIR=.*|SCRIPT_DIR=\"$out\"|" $out/bin/mo
             '';
 
             meta = with nixpkgs.lib; {
@@ -57,13 +57,13 @@
               platforms = platforms.darwin;
             };
           };
-        } 
+        }
       );
 
       apps = forAllSystems (system: {
         default = {
           type = "app";
-          program = "${self.packages.${system}.default}/bin/mole";
+          program = "${self.packages.${system}.default}/bin/mo";
         };
       });
     };
