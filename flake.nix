@@ -27,7 +27,6 @@
 
             proxyVendor = true;
             vendorHash = "sha256-8+1FDxumlBFzBz/b1KVbotQq+twm/MRlJSJ9AZCgASE=";
-            deleteVendor = true;
 
             subPackages = [ "cmd/analyze" "cmd/status" ];
 
